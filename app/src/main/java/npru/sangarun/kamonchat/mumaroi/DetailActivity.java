@@ -56,10 +56,10 @@ public class DetailActivity extends AppCompatActivity {
         nameString = getIntent().getStringExtra("Name");
         imageAnInt = getIntent().getIntExtra("Image", R.drawable.food1);
         detailString = getIntent().getStringExtra("Detail");
-        potentialString = getIntent().getStringExtra("potential");
-        latString = getIntent().getStringExtra("lat");
-        lngString = getIntent().getStringExtra("lng");
-        remarkString = getIntent().getStringExtra("remark");
+        potentialString = getIntent().getStringExtra("Potential");
+        latString = getIntent().getStringExtra("Lat");
+        lngString = getIntent().getStringExtra("Lng");
+        remarkString = getIntent().getStringExtra("Remark");
 
         Log.d("aoi", typeString);
         Log.d("aoi", nameString);

@@ -148,8 +148,6 @@ public class RestaurList extends AppCompatActivity {
             lngStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_LNG));
             remarkStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_REMARK));
 
-
-
             objCursor.moveToNext();
 
         }   // for

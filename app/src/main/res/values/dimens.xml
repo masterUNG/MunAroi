@@ -10,5 +10,6 @@
     <dimen name="h2">15sp</dimen>
     <dimen name="spinner">220dp</dimen>
     <dimen name="heigh">100dp</dimen>
+    <dimen name="edit">300dp</dimen>
 
 </resources>

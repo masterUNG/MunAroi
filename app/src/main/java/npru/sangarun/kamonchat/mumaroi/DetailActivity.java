@@ -33,6 +33,14 @@ public class DetailActivity extends AppCompatActivity {
 
     }   // onCreate
 
+    public void clickRemark(View view) {
+
+        Intent objIntent = new Intent(DetailActivity.this, EditRemarkActivity.class);
+        objIntent.putExtra("Name", nameString);
+        startActivity(objIntent);
+    }
+
+
     public void clickMap(View view) {
 
         Intent objIntent = new Intent(DetailActivity.this, MapsActivity.class);

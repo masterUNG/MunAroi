@@ -2,11 +2,11 @@
     <string name="app_name">Mum Aroi</string>
 
 
-
     <string name="to_all">แสดงร้านอาหาร</string>
     <string name="map">แผนที่</string>
     <string name="remark">แสดงความคิดเห็น</string>
     <string name="Detail_1">จุดเด่น</string>
     <string name="Detail_2">รายละเอียด</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

@@ -1,8 +1,10 @@
 package npru.sangarun.kamonchat.mumaroi;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,8 +31,17 @@ public class DetailActivity extends AppCompatActivity {
         //Show View
         showView();
 
-
     }   // onCreate
+
+    public void clickMap(View view) {
+
+        Intent objIntent = new Intent(DetailActivity.this, MapsActivity.class);
+        objIntent.putExtra("Name", nameString);
+        objIntent.putExtra("Lat", latString);
+        objIntent.putExtra("Lng", lngString);
+        startActivity(objIntent);
+    }
+
 
     private void showView() {
         imageView.setImageResource(imageAnInt);

@@ -1,6 +1,8 @@
 package npru.sangarun.kamonchat.mumaroi;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -49,13 +51,10 @@ public class RestaurList extends AppCompatActivity {
                 objIntent.putExtra("Remark", remarkStrings[position]);
 
 
-
                 startActivity(objIntent);
 
             }
         });
-
-
 
 
     }   // createListView
@@ -67,45 +66,85 @@ public class RestaurList extends AppCompatActivity {
 
         ManageTABLE objManageTABLE = new ManageTABLE(this);
 
-        switch (indexAnInt) {
-            case 0:
+        if (indexAnInt == 0) {
 
-                nameStrings = objManageTABLE.readAllData(2);
-                typeStrings = objManageTABLE.readAllData(1);
-                iconStrings = objManageTABLE.readAllData(3);
-                detailStrings = objManageTABLE.readAllData(4);
-                potentialStrings = objManageTABLE.readAllData(5);
-                latStrings = objManageTABLE.readAllData(6);
-                lngStrings = objManageTABLE.readAllData(7);
-                remarkStrings = objManageTABLE.readAllData(8);
+            nameStrings = objManageTABLE.readAllData(2);
+            typeStrings = objManageTABLE.readAllData(1);
+            iconStrings = objManageTABLE.readAllData(3);
+            detailStrings = objManageTABLE.readAllData(4);
+            potentialStrings = objManageTABLE.readAllData(5);
+            latStrings = objManageTABLE.readAllData(6);
+            lngStrings = objManageTABLE.readAllData(7);
+            remarkStrings = objManageTABLE.readAllData(8);
 
-                int intTimes = 0;
-                iconInts = new int[iconStrings.length];
-                while (intTimes < nameStrings.length) {
-                    iconInts[intTimes] = setUpIconInt(Integer.parseInt(iconStrings[intTimes]));
-                    intTimes += 1;
-                }   // while
+            int intTimes = 0;
+            iconInts = new int[iconStrings.length];
+            while (intTimes < nameStrings.length) {
+                iconInts[intTimes] = setUpIconInt(Integer.parseInt(iconStrings[intTimes]));
+                intTimes += 1;
+            }   // while
 
-                break;
-            case 1: // ร้านอาหาร
-                break;
-            case 2: // ชาบู
-                break;
-            case 3: //  สเต็ก
-                break;
-            case 4: // เครื่องดื่ม
-                break;
-            case 5: // จารเดี่ยว
-                break;
-            case 6: // ปิ้งย่าง
-                break;
-            case 7: // ซีฟูด
-                break;
-            case 8: // อื่น
-                break;
-        }   //switch
+        } else {
+
+            readAllFromWhere();
+
+        }
 
     }   // receiveData
+
+    private void readAllFromWhere() {
+
+        String strWhere = null;
+        SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase("aroi.db", MODE_PRIVATE, null);
+
+        switch (indexAnInt) {
+            case 1:
+                strWhere = "ชาบู-สุกี้/ปิ้งย่าง";
+                break;
+            case 2:
+                strWhere = "สเต็ก";
+                break;
+            case 3:
+                strWhere = "เครื่องดื่ม/เบเกอรี่";
+                break;
+            case 4:
+                strWhere = "ส้มตำ";
+                break;
+            case 5:
+                strWhere = "ก๋วยเตี๋ยว";
+                break;
+            case 6:
+                strWhere = "ซีฟู้ด";
+                break;
+            case 7:
+                strWhere = "ข้าวต้ม/โจ๊ก";
+                break;
+            default:
+                strWhere = "ชาบู-สุกี้/ปิ้งย่าง";
+                break;
+        }   // switch
+
+        Cursor objCursor = objSqLiteDatabase.rawQuery("SELECT * FROM restaurantTABLE WHERE Type = " + "'" + strWhere + "'" , null);
+        objCursor.moveToFirst();
+        nameStrings = new String[objCursor.getCount()];
+        typeStrings = new String[objCursor.getCount()];
+        iconStrings = new String[objCursor.getCount()];
+        iconInts = new int[objCursor.getCount()];
+
+        for (int i=0;i<objCursor.getCount();i++) {
+
+            nameStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_NAME));
+            typeStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_TYPE));
+            iconStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_IMAGE));
+
+            iconInts[i] = setUpIconInt(Integer.parseInt(iconStrings[i]));
+
+            objCursor.moveToNext();
+
+        }   // for
+
+
+    }   // readAllFromWhere
 
     private int setUpIconInt(int intValue) {
 

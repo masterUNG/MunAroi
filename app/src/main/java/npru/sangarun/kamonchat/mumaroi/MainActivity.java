@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Explicit
     private ManageTABLE objManageTABLE;
     private Spinner typeSpinner;
-    private Button toTypeBotton, toAllBotton;
+    private Button toAllBotton;
     private int indexAnInt, spinnerAnInt;
 
     @Override
@@ -37,14 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void buttoncontrollre() {
         toAllBotton.setOnClickListener(this);
-        toTypeBotton.setOnClickListener(this);
     }
 
     private void bindwidget() {
-        toTypeBotton = (Button) findViewById(R.id.button);
         toAllBotton = (Button) findViewById(R.id.button2);
-
-
     }
 
 
@@ -59,13 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                spinnerAnInt = position + 1;
+                spinnerAnInt = position;
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                spinnerAnInt = 1;
+                spinnerAnInt = 0;
 
             }
         });
@@ -76,21 +72,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.button:
-                indexAnInt = spinnerAnInt;
-                break;
-            case R.id.button2:
-                indexAnInt = 0;
-                break;
-            default:
-                indexAnInt = 0;
-                break;
-        } //switch
-
         //Intent to RestaurantListView
         Intent objIntent = new Intent(MainActivity.this, RestaurList.class);
-        objIntent.putExtra("index", indexAnInt);
+        objIntent.putExtra("index", spinnerAnInt);
         startActivity(objIntent);
 
     } // onClick

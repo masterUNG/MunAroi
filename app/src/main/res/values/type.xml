@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string-array name="type">
+
+
+        <item>ร้านอาหาร</item>
+        <item>ชาบู-สุกี้</item>
+        <item>สเต็ก</item>
+        <item>เครื่องดื่ม/เบเกอรี่</item>
+        <item>อาหารจานเดียว</item>
+        <item>ปิ้งย่าง</item>
+        <item>ซีฟู้ด</item>
+        <item>อื่นๆ</item>
+    </string-array>
+</resources>

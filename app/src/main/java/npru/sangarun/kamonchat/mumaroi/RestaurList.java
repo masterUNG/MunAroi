@@ -130,14 +130,25 @@ public class RestaurList extends AppCompatActivity {
         typeStrings = new String[objCursor.getCount()];
         iconStrings = new String[objCursor.getCount()];
         iconInts = new int[objCursor.getCount()];
+        detailStrings = new String[objCursor.getCount()];
+        potentialStrings = new String[objCursor.getCount()];
+        latStrings = new String[objCursor.getCount()];
+        lngStrings = new String[objCursor.getCount()];
+        remarkStrings = new String[objCursor.getCount()];
 
         for (int i=0;i<objCursor.getCount();i++) {
 
             nameStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_NAME));
             typeStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_TYPE));
             iconStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_IMAGE));
-
             iconInts[i] = setUpIconInt(Integer.parseInt(iconStrings[i]));
+            detailStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_DETAIL));
+            potentialStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_POTENTIAL));
+            latStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_LAT));
+            lngStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_LNG));
+            remarkStrings[i] = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_REMARK));
+
+
 
             objCursor.moveToNext();
 

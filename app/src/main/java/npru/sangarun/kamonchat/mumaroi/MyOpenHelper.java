@@ -34,7 +34,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_RESTAURANT_TABLE);
 
         String[] strCreate = new String[21];
-        strCreate[0] = "insert into restaurantTABLE VALUES (null,'ชาบู-สุกี้/ปิ้งย่าง', 'Shabu Indy1', 0, 'Detail1', 'Potenial1', 13.80511, 100.0906 , 'Remark1' );";
+        strCreate[0] = "insert into restaurantTABLE VALUES (null,'ชาบู-สุกี้/ปิ้งย่าง', 'Shabu Indy1', 0, 'นี่คือรายละเอียดร้าน Shabu Indy0', 'Potenial1', 13.80511, 100.0906 , 'Remark1' );";
         strCreate[1] = "insert into restaurantTABLE VALUES (null,'ข้าวต้ม/โจ๊ก', 'ข้าวต้มอ้วน1', 1, 'Detail1', 'Potenial1', 13.81635, 100.0508, 'Remark1' );";
         strCreate[2] = "insert into restaurantTABLE VALUES (null,'สเต็ก', 'สเต็กลุง1', 2, 'Detail1', 'Potenial1', 13.819525, 100.052181, 'Remark1' );";
         strCreate[3] = "insert into restaurantTABLE VALUES (null,'ก๋วยเตี๋ยว', ' ก๋วยเตี๋ยวต้มยำโบราณ ร้านเปลว1', 3, 'Detail1', 'Potenial1', 13.84055, 100.04308, 'Remark1' );";

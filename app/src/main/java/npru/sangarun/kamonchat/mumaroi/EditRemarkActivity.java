@@ -1,5 +1,7 @@
 package npru.sangarun.kamonchat.mumaroi;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +32,45 @@ public class EditRemarkActivity extends AppCompatActivity {
         showEditText();
 
     }   // Main Method
+
+    public void clickUpdateRemark(View view) {
+
+        remarkString = remarkEditText.getText().toString().trim();
+
+        AlertDialog.Builder objBuilder = new AlertDialog.Builder(this);
+        objBuilder.setIcon(R.drawable.icon_question);
+        objBuilder.setTitle("กรุณาตรวจสอบ");
+        objBuilder.setMessage("คุณต้องการ Remark ==> " + "\n" + remarkString);
+        objBuilder.setCancelable(false);
+        objBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                editSQLite();
+                dialogInterface.dismiss();
+            }
+        });
+        objBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        objBuilder.show();
+
+    }   // clickUpdateRemark
+
+    private void editSQLite() {
+
+        //Delete Where Name = nameString
+        SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase("aroi.db", MODE_PRIVATE, null);
+        objSqLiteDatabase.delete("restaurantTABLE", "Name = " + "'" + nameString + "'", null);
+
+        //UPDATE SQLite
+
+
+
+    }   // editSQLite
+
 
     public void clickClear(View view) {
         remarkEditText.setText("");

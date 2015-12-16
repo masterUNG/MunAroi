@@ -1,5 +1,6 @@
 package npru.sangarun.kamonchat.mumaroi;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,6 +34,29 @@ public class ManageTABLE {
         readSqLiteDatabase = objMyOpenHelper.getReadableDatabase();
 
     }   // Constructor
+
+    //Add Value to SQLite
+    public long addValueToSQLite(String strType,
+                                 String strName,
+                                 String strImage,
+                                 String strDetail,
+                                 String strPotential,
+                                 String strLat,
+                                 String strLng,
+                                 String strRemark) {
+
+        ContentValues objContentValues = new ContentValues();
+        objContentValues.put(COLUMN_TYPE, strType);
+        objContentValues.put(COLUMN_NAME, strName);
+        objContentValues.put(COLUMN_IMAGE, strImage);
+        objContentValues.put(COLUMN_DETAIL, strDetail);
+        objContentValues.put(COLUMN_POTENTIAL, strPotential);
+        objContentValues.put(COLUMN_LAT, strLat);
+        objContentValues.put(COLUMN_LNG, strLng);
+        objContentValues.put(COLUMN_REMARK, strRemark);
+        return writeSqLiteDatabase.insert(DATABASE_TABLE, null, objContentValues);
+    }
+
 
     //Read All Data
     public String[] readAllData(int intColumn) {

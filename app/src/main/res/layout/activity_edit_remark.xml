@@ -54,6 +54,7 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:onClick="clickUpdateRemark"
             android:text="Update Remark"
             android:id="@+id/button5"
             android:layout_weight="1" />

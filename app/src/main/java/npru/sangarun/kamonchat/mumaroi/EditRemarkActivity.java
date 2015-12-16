@@ -61,13 +61,25 @@ public class EditRemarkActivity extends AppCompatActivity {
 
     private void editSQLite() {
 
-        //Delete Where Name = nameString
+        //Delete & Read Where Name = nameString
         SQLiteDatabase objSqLiteDatabase = openOrCreateDatabase("aroi.db", MODE_PRIVATE, null);
+
+        Cursor objCursor = objSqLiteDatabase.rawQuery("SELECT * FROM restaurantTABLE WHERE Name = " + "'" + nameString + "'", null);
+        objCursor.moveToFirst();
+        String strType = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_TYPE));
+        String strName = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_NAME));
+        String strImage = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_IMAGE));
+        String strDetail = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_DETAIL));
+        String strPotential = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_POTENTIAL));
+        String strLat = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_LAT));
+        String strLng = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_LNG));
+        objCursor.close();
+
         objSqLiteDatabase.delete("restaurantTABLE", "Name = " + "'" + nameString + "'", null);
 
         //UPDATE SQLite
-
-
+        ManageTABLE objManageTABLE = new ManageTABLE(this);
+        objManageTABLE.addValueToSQLite(strType, strName, strImage, strDetail, strPotential, strLat, strLng, remarkString);
 
     }   // editSQLite
 
@@ -87,7 +99,7 @@ public class EditRemarkActivity extends AppCompatActivity {
         Cursor objCursor = objSqLiteDatabase.rawQuery("SELECT * FROM restaurantTABLE WHERE Name = " + "'" + nameString + "'", null);
         objCursor.moveToFirst();
         remarkString = objCursor.getString(objCursor.getColumnIndex(ManageTABLE.COLUMN_REMARK));
-
+        objCursor.close();
     }
 
     private void bindWidget() {
